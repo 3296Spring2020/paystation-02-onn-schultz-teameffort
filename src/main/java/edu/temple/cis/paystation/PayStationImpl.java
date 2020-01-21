@@ -59,4 +59,14 @@ public class PayStationImpl implements PayStation {
     private void reset() {
         timeBought = insertedSoFar = 0;
     }
+   
+     /*returns the total amount of money collected by the paystation since 
+     the last call and empties it, setting the total to zero*/
+     public int empty(){
+     int rtrn;
+     int totalCollected = 0;
+     rtrn = totalCollected;
+     totalCollected = 0;
+     return rtrn;
+     } 
 }
