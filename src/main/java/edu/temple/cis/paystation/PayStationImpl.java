@@ -24,6 +24,7 @@ public class PayStationImpl implements PayStation {
     
     private int insertedSoFar;
     private int timeBought;
+    private float totalInMachine;   /* total amount of money collected since last emptying */
 
     @Override
     public void addPayment(int coinValue)
@@ -48,6 +49,11 @@ public class PayStationImpl implements PayStation {
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
         reset();
+        /*each min cost 2.5 cents so we can find the total money spent by 
+        multiplyng time bought by 2.5*/
+        float moneyIn = timeBought * 2.5f;
+        /* add total money recieved each time we buy*/
+        totalInMachine += moneyIn;
         return r;
     }
   
@@ -77,10 +83,9 @@ public class PayStationImpl implements PayStation {
      /*returns the total amount of money collected by the paystation since 
      the last call and empties it, setting the total to zero*/
      public int empty(){
-     int rtrn;
-     int totalCollected = 0;
-     rtrn = totalCollected;
-     totalCollected = 0;
-     return rtrn;
+     float rtrn;
+     rtrn = totalInMachine;
+     totalInMachine = 0;
+     return (int)rtrn;
      } 
 }
