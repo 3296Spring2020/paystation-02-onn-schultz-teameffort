@@ -20,6 +20,11 @@
 
 package edu.temple.cis.paystation;
 
+
+//import org.junit.Test;
+//import static org.junit.Assert.*;
+//import org.junit.Before;
+
 public class PayStationImpl implements PayStation {
     
     private int insertedSoFar;
@@ -82,10 +87,15 @@ public class PayStationImpl implements PayStation {
    
      /*returns the total amount of money collected by the paystation since 
      the last call and empties it, setting the total to zero*/
+//    @Override
+//    @Test
      public int empty(){
      float rtrn;
      rtrn = totalInMachine;
      totalInMachine = 0;
+     
+     //assertEquals("should display 0" , 0 , totalInMachine);
+     
      return (int)rtrn;
      } 
 }
