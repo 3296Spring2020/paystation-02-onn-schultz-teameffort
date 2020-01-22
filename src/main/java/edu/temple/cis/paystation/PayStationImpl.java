@@ -24,7 +24,7 @@ public class PayStationImpl implements PayStation {
     
     private int insertedSoFar;
     private int timeBought;
-    private float totalInMachine;   /* total amount of money collected since last emptying */
+    public float totalInMachine;   /* total amount of money collected since last emptying */
 
     @Override
     public void addPayment(int coinValue)

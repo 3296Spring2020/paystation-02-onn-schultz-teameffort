@@ -141,17 +141,36 @@ public class PayStationImplTest {
 
 
     /**
-    * Test for empty machine method
+    * Test for reporting the money taken in since last time empty was called
     */
     @Test
-    public void ShouldEmptyAfterMoney()
+    public void ShouldRepotAfterMoneyEmptied()
             throws IllegalCoinException{
         /* add some fake payment to test the buy before emptying*/
         ps.addPayment(10);
         /* here we use the 10 cents to buy some time*/
         ps.buy();
-        int moneyInMachine = ps.empty();
-        assertEquals("this should print 10"  , 10 ,moneyInMachine);
+        /* money removed from the machine*/
+        int moneyRemoved = ps.empty();
+        assertEquals("this should print 10"  , 10 ,moneyRemoved);
 
+    }
+
+
+    /**
+     * This should return empty after money is emptied from machine
+     * @throws IllegalCoinException
+     */
+    @Test
+    public void ShouldReportEmptyMachine()
+            throws IllegalCoinException{
+        /* money in machine should be reset to 0 after emptied */
+        /* add some fake payment to test the buy before emptying*/
+        PayStationImpl inst = new PayStationImpl();
+        int amountToAdd = 25;
+        inst.addPayment(amountToAdd);
+        inst.empty();
+        int result = (int)inst.totalInMachine;
+        assertEquals("this should print 0"  , 0 ,result);
     }
 }
