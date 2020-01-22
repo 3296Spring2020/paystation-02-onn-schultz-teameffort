@@ -48,12 +48,12 @@ public class PayStationImpl implements PayStation {
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
-        reset();
         /*each min cost 2.5 cents so we can find the total money spent by 
         multiplyng time bought by 2.5*/
         float moneyIn = timeBought * 2.5f;
         /* add total money recieved each time we buy*/
         totalInMachine += moneyIn;
+        reset();
         return r;
     }
   
@@ -82,6 +82,7 @@ public class PayStationImpl implements PayStation {
    
      /*returns the total amount of money collected by the paystation since 
      the last call and empties it, setting the total to zero*/
+     @Override
      public int empty(){
      float rtrn;
      rtrn = totalInMachine;

@@ -138,4 +138,20 @@ public class PayStationImplTest {
         assertEquals("Insert after cancel should work",
                 10, ps.readDisplay());
     }
+
+
+    /**
+    * Test for empty machine method
+    */
+    @Test
+    public void ShouldEmptyAfterMoney()
+            throws IllegalCoinException{
+        /* add some fake payment to test the buy before emptying*/
+        ps.addPayment(10);
+        /* here we use the 10 cents to buy some time*/
+        ps.buy();
+        int moneyInMachine = ps.empty();
+        assertEquals("this should print 10"  , 10 ,moneyInMachine);
+
+    }
 }
