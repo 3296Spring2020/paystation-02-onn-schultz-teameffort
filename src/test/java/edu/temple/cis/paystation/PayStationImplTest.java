@@ -144,7 +144,7 @@ public class PayStationImplTest {
     * Test for reporting the money taken in since last time empty was called
     */
     @Test
-    public void ShouldRepotAfterMoneyEmptied()
+    public void ShouldReportAfterMoneyEmptied()
             throws IllegalCoinException{
         /* add some fake payment to test the buy before emptying*/
         ps.addPayment(10);
