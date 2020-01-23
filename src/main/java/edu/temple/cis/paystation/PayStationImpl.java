@@ -91,7 +91,7 @@ public class PayStationImpl implements PayStation {
         coinMap.put(25, 0); //init key to 25cent, zero in machine so far
         //every coinmap.put method here will/may be moved to an appropiate spot
 
-        System.out.println("Size of MAP is " + coinMap.size()); //Test print
+        System.out.println("Size of MAP is " + coinMap.size()); //Test print should print 4
 
         reset();
 
