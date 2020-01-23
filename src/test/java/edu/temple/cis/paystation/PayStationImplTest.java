@@ -9,6 +9,8 @@
  * implied. You may study, use, modify, and distribute it for non-commercial
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
+
+//THIS SHOULD DISPLAY WHILE IN ONNBRANCH -- Test to check for recognizability
 package edu.temple.cis.paystation;
 
 import org.junit.Test;

@@ -3,10 +3,10 @@
  *
  * Responsibilities:
  *
- * 1) Accept payment; 
- * 2) Calculate parking time based on payment; 
- * 3) Know earning, parking time bought; 
- * 4) Issue receipts; 
+ * 1) Accept payment;
+ * 2) Calculate parking time based on payment;
+ * 3) Know earning, parking time bought;
+ * 4) Issue receipts;
  * 5) Handle buy and cancel events.
  *
  * This source code is from the book "Flexible, Reliable Software: Using
@@ -17,22 +17,34 @@
  * implied. You may study, use, modify, and distribute it for non-commercial
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
-
 package edu.temple.cis.paystation;
 
+import java.util.HashMap;
+import java.util.Map; //import Map utilities for method cancel()
+//import org.junit.Test;
+//import static org.junit.Assert.*;
+//import org.junit.Before;
+
 public class PayStationImpl implements PayStation {
-    
+
     private int insertedSoFar;
     private int timeBought;
+
     public float totalInMachine;   /* total amount of money collected since last emptying */
+    /* total amount of money collected since last emptying */
+    private Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
+
 
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
-            case 5: break;
-            case 10: break;
-            case 25: break;
+            case 5:
+                break;
+            case 10:
+                break;
+            case 25:
+                break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
@@ -56,31 +68,42 @@ public class PayStationImpl implements PayStation {
         reset();
         return r;
     }
-  
+
 //****************************************************************************** 
-    /** Cancel the present transaction. Resets the paystation for a 
-* new transaction. 
-* @return A Map defining the coins returned to the user. 
-* The key is the coin type and the associated value is the 
-* number of these coins that are returned. 
-* The Map object is never null even if no coins are returned. 
-* The Map will only contain only keys for coins to be returned. (If you enter two dimes and a nickle, you should get back two dimes and a nickle, not a quarter.)
-* The Map will be cleared after a cancel or buy. 
-*/
- 
+    /**
+     * Cancel the present transaction. Resets the paystation for a new
+     * transaction.
+     *
+     * @return A Map defining the coins returned to the user. The key is the
+     * coin type and the associated value is the number of these coins that are
+     * returned. The Map object is never null even if no coins are returned. The
+     * Map will only contain only keys for coins to be returned. (If you enter
+     * two dimes and a nickle, you should get back two dimes and a nickle, not a
+     * quarter.) The Map will be cleared after a cancel or buy.
+     */
 //Map<Integer, Integer> cancel();
+//Parameters: K - the type of keys maintained by this map, V - the type of mapped values
     @Override
     public void cancel() {
-        
+
+        //initialize variable coinMap -- if not will have java.lang.NullPointerException
+        coinMap.put(0, 0); //init 0,0 default
+        coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
+        coinMap.put(10, 0); //init key 10cent, zero in machine so far
+        coinMap.put(25, 0); //init key to 25cent, zero in machine so far
+        //every coinmap.put method here will/may be moved to an appropiate spot
+
+        System.out.println("Size of MAP is " + coinMap.size()); //Test print should print 4
+
         reset();
-        
+
     }//end cancel()
-    
+
     private void reset() {
         timeBought = insertedSoFar = 0;
     }
-   
-     /*returns the total amount of money collected by the paystation since 
+
+    /*returns the total amount of money collected by the paystation since 
      the last call and empties it, setting the total to zero*/
      @Override
      public int empty(){
@@ -89,4 +112,5 @@ public class PayStationImpl implements PayStation {
      totalInMachine = 0;
      return (int)rtrn;
      } 
+
 }
