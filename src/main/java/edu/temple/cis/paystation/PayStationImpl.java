@@ -29,9 +29,11 @@ public class PayStationImpl implements PayStation {
 
     private int insertedSoFar;
     private int timeBought;
-    private float totalInMachine;
+
+    public float totalInMachine;   /* total amount of money collected since last emptying */
     /* total amount of money collected since last emptying */
     private Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
+
 
     @Override
     public void addPayment(int coinValue)
@@ -58,12 +60,12 @@ public class PayStationImpl implements PayStation {
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
-        reset();
         /*each min cost 2.5 cents so we can find the total money spent by 
         multiplyng time bought by 2.5*/
         float moneyIn = timeBought * 2.5f;
         /* add total money recieved each time we buy*/
         totalInMachine += moneyIn;
+        reset();
         return r;
     }
 
@@ -103,14 +105,12 @@ public class PayStationImpl implements PayStation {
 
     /*returns the total amount of money collected by the paystation since 
      the last call and empties it, setting the total to zero*/
-//    @Override
-//    @Test
-    public int empty() {
-        float rtrn;
-        rtrn = totalInMachine;
-        totalInMachine = 0;
+     @Override
+     public int empty(){
+     float rtrn;
+     rtrn = totalInMachine;
+     totalInMachine = 0;
+     return (int)rtrn;
+     } 
 
-        //assertEquals("should display 0" , 0 , totalInMachine);
-        return (int) rtrn;
-    }
 }
