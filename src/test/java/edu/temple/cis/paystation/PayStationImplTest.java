@@ -233,7 +233,7 @@ public class PayStationImplTest {
         /* we expect 3 nickels and one dime  and 0 quarters*/
         assertEquals("should return 3 nickels" , 3,  (int)temp.get(5));
         assertEquals("should return 1 dime" , 1,  (int)temp.get(10) );
-        assertEquals("should return 0 Quarters" , 0,  (int)temp.get(25) +1 );
+        assertEquals("should return 0 Quarters" , 0,  (int)temp.get(25));
 
     }
 }
