@@ -9,7 +9,6 @@
  * implied. You may study, use, modify, and distribute it for non-commercial
  * purposes. For any commercial use, see http://www.baerbak.com/
  */
-
 //THIS SHOULD DISPLAY WHILE IN ONNBRANCH -- Test to check for recognizability
 package edu.temple.cis.paystation;
 
@@ -23,16 +22,11 @@ public class PayStationImplTest {
 
     PayStation ps;
     PayStationImpl Mapcoin = new PayStationImpl();
-    
+
     @Before
     public void setup() {
         ps = new PayStationImpl();
-        
-        Mapcoin.coinMap.put(0, 0); //init 0,0 default
-        Mapcoin.coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
-        Mapcoin.coinMap.put(10, 0); //init key 10cent, zero in machine so far
-        Mapcoin.coinMap.put(25, 0); //init key to 25cent, zero in machine so far
-        //every coinmap.put method here will/may be moved to an appropiate spot
+        Mapcoin.initCoins();
     }
 
     /**
@@ -42,8 +36,7 @@ public class PayStationImplTest {
     public void shouldDisplay2MinFor5Cents()
             throws IllegalCoinException {
         ps.addPayment(5);
-        assertEquals("Should display 2 min for 5 cents",
-                2, ps.readDisplay());
+        assertEquals("Should display 2 min for 5 cents", 2, ps.readDisplay());
     }
 
     /**
@@ -150,48 +143,47 @@ public class PayStationImplTest {
                 10, ps.readDisplay());
     }
 
-
     /**
-    * Test for reporting the money taken in since last time empty was called
-    */
+     * Test for reporting the money taken in since last time empty was called
+     */
     @Test
     public void ShouldReportAfterMoneyEmptied()
-            throws IllegalCoinException{
+            throws IllegalCoinException {
         /* add some fake payment to test the buy before emptying*/
         ps.addPayment(10);
         /* here we use the 10 cents to buy some time*/
         ps.buy();
         /* money removed from the machine*/
         int moneyRemoved = ps.empty();
-        assertEquals("this should print 10"  , 10 ,moneyRemoved);
+        assertEquals("this should print 10", 10, moneyRemoved);
 
     }
 
-
     /**
      * This should return empty after money is emptied from machine
+     *
      * @throws IllegalCoinException
      */
     @Test
     public void ShouldReportEmptyMachine()
-            throws IllegalCoinException{
+            throws IllegalCoinException {
         /* money in machine should be reset to 0 after emptied */
-        /* add some fake payment to test the buy before emptying*/
+ /* add some fake payment to test the buy before emptying*/
         PayStationImpl inst = new PayStationImpl();
         int amountToAdd = 25;
         inst.addPayment(amountToAdd);
         inst.empty();
-        int result = (int)inst.totalInMachine;
-        assertEquals("this should print 0"  , 0 ,result);
+        int result = (int) inst.totalInMachine;
+        assertEquals("this should print 0", 0, result);
     }
 
     /**
-    * Testing cancel function returns a hash map with a single coin
-     * after a single coin is inserted
-    */
+     * Testing cancel function returns a hash map with a single coin after a
+     * single coin is inserted
+     */
     @Test
     public void cancelReturnsOneCoin()
-        throws IllegalCoinException {
+            throws IllegalCoinException {
 
         ps.addPayment(5);
 

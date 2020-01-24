@@ -35,19 +35,28 @@ public class PayStationImpl implements PayStation {
     public Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
 
     
+    @Override
+    public void initCoins() {
+    
+        coinMap.put(0, 0); //init 0,0 default
+        coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
+        coinMap.put(10, 0); //init key 10cent, zero in machine so far
+        coinMap.put(25, 0); //init key to 25cent, zero in machine so far
+        //every coinmap.put method here will/may be moved to an appropiate spot
+    }//end init
 
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
             case 5:
-                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
+                coinMap.put(coinValue, coinMap.getOrDefault(5, 0) + 1); //this will keep a record of coins entered by person
                 break;
             case 10:
-                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
+                coinMap.put(coinValue, coinMap.getOrDefault(10, 0) + 1);
                 break;
             case 25:
-                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
+                coinMap.put(coinValue, coinMap.getOrDefault(10, 0) +1); 
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);

@@ -57,6 +57,8 @@ public interface PayStation {
     * method to be called when machine needs to be emptied of money
     */
     public int empty();
+    
+    public void initCoins();
 }
 
 
