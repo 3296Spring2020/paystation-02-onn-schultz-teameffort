@@ -211,8 +211,8 @@ public class PayStationImplTest {
         
         Map temp = ps.cancel();
         
-        assertEquals("should return 2 nickels" , 2,  (int)temp.get(5)  );
-        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) + 1 );
+        assertEquals("should return 2 nickels" , 2,  (int)temp.get(5));
+        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) );
 
 
     }//
