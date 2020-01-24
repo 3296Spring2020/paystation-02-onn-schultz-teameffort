@@ -80,6 +80,8 @@ public class PayStationImpl implements PayStation {
         /* add total money recieved each time we buy*/
         totalInMachine += moneyIn;
         reset();
+        
+        initCoins();
         return r;
     }
 

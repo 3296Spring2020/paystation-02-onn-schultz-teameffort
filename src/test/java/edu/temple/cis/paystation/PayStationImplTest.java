@@ -196,12 +196,12 @@ public class PayStationImplTest {
 
     @Test
     public void canceledCoinAreNotCounted()
-        throws IllegalCoinException{
+            throws IllegalCoinException {
 
         PayStationImpl inst = new PayStationImpl();
         inst.addPayment(5);
         Map temp = inst.cancel();
-        assertEquals("nothing in machine, this should be 0", 0,(int)inst.totalInMachine );
+        assertEquals("nothing in machine, this should be 0", 0, (int) inst.totalInMachine);
     }
 
     @Test
@@ -209,18 +209,17 @@ public class PayStationImplTest {
         ps.addPayment(5);
         ps.addPayment(5);
         ps.addPayment(10);
-        
-        Map temp = ps.cancel();
-        
-        assertEquals("should return 2 nickels" , 2,  (int)temp.get(5));
-        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) );
 
+        Map temp = ps.cancel();
+
+        assertEquals("should return 2 nickels", 2, (int) temp.get(5));
+        assertEquals("should return 1 dime", 1, (int) temp.get(10));
 
     }//
 
     @Test
     public void cancelReturnsCorrectCoins()
-        throws IllegalCoinException{
+            throws IllegalCoinException {
         /* here we add twenty five cents*/
         ps.addPayment(5);
         ps.addPayment(5);
@@ -231,15 +230,15 @@ public class PayStationImplTest {
         Map temp = ps.cancel();
 
         /* we expect 3 nickels and one dime  and 0 quarters*/
-        assertEquals("should return 3 nickels" , 3,  (int)temp.get(5));
-        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) );
-        assertEquals("should return 0 Quarters" , 0,  (int)temp.get(25));
+        assertEquals("should return 3 nickels", 3, (int) temp.get(5));
+        assertEquals("should return 1 dime", 1, (int) temp.get(10));
+        assertEquals("should return 0 Quarters", 0, (int) temp.get(25));
 
     }
 
     @Test
     public void cancelClearsMap()
-            throws IllegalCoinException{
+            throws IllegalCoinException {
         PayStationImpl inst = new PayStationImpl();
         /* here we add twenty five cents*/
         inst.addPayment(5);
@@ -251,14 +250,29 @@ public class PayStationImplTest {
         Map temp = inst.cancel();
 
         /*check that all types of coins in maps are set to zero*/
-        assertEquals("count of nickels should be 0", (int)inst.coinMap.get(5),0);
-        assertEquals("count of dimes should be 0", (int)inst.coinMap.get(10),0);
-        assertEquals("count of quarters should be 0", (int)inst.coinMap.get(25),0);
-
-       
+        assertEquals("count of nickels should be 0", (int) inst.coinMap.get(5), 0);
+        assertEquals("count of dimes should be 0", (int) inst.coinMap.get(10), 0);
+        assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
 
     }
 
+    @Test
+    public void buyClearsMap()
+            throws IllegalCoinException {
+        PayStationImpl inst = new PayStationImpl();
+        /* here we add twenty five cents*/
+        inst.addPayment(25);
+        inst.addPayment(25);
+        inst.addPayment(5);
+        inst.addPayment(10);
 
+        Receipt temp = inst.buy();
+
+ 
+        assertEquals("count of nickels should be 0", (int) inst.coinMap.get(5), 0+100);
+        assertEquals("count of dimes should be 0", (int) inst.coinMap.get(10), 0);
+        assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
+
+    }//end buyClearsMap
 
 }
