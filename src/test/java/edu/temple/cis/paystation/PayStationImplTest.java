@@ -269,7 +269,7 @@ public class PayStationImplTest {
         Receipt temp = inst.buy();
 
  
-        assertEquals("count of nickels should be 0", (int) inst.coinMap.get(5), 0+100);
+        assertEquals("count of nickels should be 0", (int) inst.coinMap.get(5), 0);
         assertEquals("count of dimes should be 0", (int) inst.coinMap.get(10), 0);
         assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
 
