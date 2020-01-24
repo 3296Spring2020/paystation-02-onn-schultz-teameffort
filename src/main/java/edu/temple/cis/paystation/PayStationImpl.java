@@ -32,8 +32,9 @@ public class PayStationImpl implements PayStation {
 
     public float totalInMachine;   /* total amount of money collected since last emptying */
     /* total amount of money collected since last emptying */
-    private Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
+    public Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
 
+    
 
     @Override
     public void addPayment(int coinValue)
@@ -48,6 +49,8 @@ public class PayStationImpl implements PayStation {
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
+        
+        coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
     }
@@ -84,18 +87,21 @@ public class PayStationImpl implements PayStation {
 //Map<Integer, Integer> cancel();
 //Parameters: K - the type of keys maintained by this map, V - the type of mapped values
     @Override
-    public void cancel() {
+    public Map cancel() {
 
         //initialize variable coinMap -- if not will have java.lang.NullPointerException
-        coinMap.put(0, 0); //init 0,0 default
-        coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
-        coinMap.put(10, 0); //init key 10cent, zero in machine so far
-        coinMap.put(25, 0); //init key to 25cent, zero in machine so far
+//        coinMap.put(0, 0); //init 0,0 default
+//        coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
+//        coinMap.put(10, 0); //init key 10cent, zero in machine so far
+//        coinMap.put(25, 0); //init key to 25cent, zero in machine so far
         //every coinmap.put method here will/may be moved to an appropiate spot
 
-        System.out.println("Size of MAP is " + coinMap.size()); //Test print should print 4
+        //System.out.println("Size of MAP is " + coinMap.size()); //Test print should print 4
 
         reset();
+        
+        return coinMap;
+ 
 
     }//end cancel()
 

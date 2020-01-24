@@ -20,10 +20,17 @@ import org.junit.Before;
 public class PayStationImplTest {
 
     PayStation ps;
-
+    PayStationImpl Mapcoin = new PayStationImpl();
+    
     @Before
     public void setup() {
         ps = new PayStationImpl();
+        
+        Mapcoin.coinMap.put(0, 0); //init 0,0 default
+        Mapcoin.coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
+        Mapcoin.coinMap.put(10, 0); //init key 10cent, zero in machine so far
+        Mapcoin.coinMap.put(25, 0); //init key to 25cent, zero in machine so far
+        //every coinmap.put method here will/may be moved to an appropiate spot
     }
 
     /**
