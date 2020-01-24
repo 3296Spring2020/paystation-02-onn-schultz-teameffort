@@ -17,6 +17,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
+import java.util.Map;
+
 public class PayStationImplTest {
 
     PayStation ps;
@@ -181,5 +183,21 @@ public class PayStationImplTest {
         inst.empty();
         int result = (int)inst.totalInMachine;
         assertEquals("this should print 0"  , 0 ,result);
+    }
+
+    /**
+    * Testing cancel function returns a hash map with a single coin
+     * after a single coin is inserted
+    */
+    @Test
+    public void cancelReturnsOneCoin()
+        throws IllegalCoinException {
+
+        ps.addPayment(5);
+
+        /* we expect to return a map with 1 nickel in it, so we get the instance of the
+        * pay machine and get the count of all coins with value 5 (ie all nickels) */
+        assertEquals(" this should be 1 nickel", 1, ps.cancel().get(5));
+
     }
 }

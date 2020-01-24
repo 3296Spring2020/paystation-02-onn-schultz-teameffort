@@ -41,16 +41,19 @@ public class PayStationImpl implements PayStation {
             throws IllegalCoinException {
         switch (coinValue) {
             case 5:
+                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
                 break;
             case 10:
+                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
                 break;
             case 25:
+                coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
         
-        coinMap.put(coinValue, coinMap.get(coinValue) +1 ); //this will keep a record of coins entered by person
+
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
     }
@@ -88,15 +91,6 @@ public class PayStationImpl implements PayStation {
 //Parameters: K - the type of keys maintained by this map, V - the type of mapped values
     @Override
     public Map cancel() {
-
-        //initialize variable coinMap -- if not will have java.lang.NullPointerException
-//        coinMap.put(0, 0); //init 0,0 default
-//        coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
-//        coinMap.put(10, 0); //init key 10cent, zero in machine so far
-//        coinMap.put(25, 0); //init key to 25cent, zero in machine so far
-        //every coinmap.put method here will/may be moved to an appropiate spot
-
-        //System.out.println("Size of MAP is " + coinMap.size()); //Test print should print 4
 
         reset();
         
