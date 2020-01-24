@@ -202,4 +202,18 @@ public class PayStationImplTest {
         Map temp = inst.cancel();
         assertEquals("nothing in machine, this should be 0", 0,(int)inst.totalInMachine );
     }
+    
+    @Test
+    public void returnMixtureOfCoins() throws IllegalCoinException {
+        ps.addPayment(5);
+        ps.addPayment(5);
+        ps.addPayment(10);
+        
+        Map temp = ps.cancel();
+        
+        assertEquals("should return 2 nickels" , 2,  (int)temp.get(5)  );
+        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) + 1 );
+
+
+    }//
 }
