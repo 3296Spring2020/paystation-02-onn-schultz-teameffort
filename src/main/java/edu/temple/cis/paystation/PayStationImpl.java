@@ -101,8 +101,17 @@ public class PayStationImpl implements PayStation {
     public Map cancel() {
 
         reset();
-        
-        return coinMap;
+        Map<Integer, Integer> new_map
+                = new HashMap<Integer, Integer>();
+
+        // using iterator
+        for (Map.Entry<Integer, Integer> entry : coinMap.entrySet()) {
+            new_map.put(entry.getKey(),
+                    entry.getValue());
+        }
+
+        initCoins();
+        return new_map;
  
 
     }//end cancel()

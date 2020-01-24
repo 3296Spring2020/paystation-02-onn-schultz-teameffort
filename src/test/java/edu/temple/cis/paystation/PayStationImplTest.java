@@ -236,4 +236,29 @@ public class PayStationImplTest {
         assertEquals("should return 0 Quarters" , 0,  (int)temp.get(25));
 
     }
+
+    @Test
+    public void cancelClearsMap()
+            throws IllegalCoinException{
+        PayStationImpl inst = new PayStationImpl();
+        /* here we add twenty five cents*/
+        inst.addPayment(5);
+        inst.addPayment(5);
+        inst.addPayment(5);
+        inst.addPayment(10);
+
+        /* the map should return the correct coin denominations not just one 25 cent coin*/
+        Map temp = inst.cancel();
+
+        /*check that all types of coins in maps are set to zero*/
+        assertEquals("count of nickels should be 0", (int)inst.coinMap.get(5),0);
+        assertEquals("count of dimes should be 0", (int)inst.coinMap.get(10),0);
+        assertEquals("count of quarters should be 0", (int)inst.coinMap.get(25),0+1);
+
+       
+
+    }
+
+
+
 }
