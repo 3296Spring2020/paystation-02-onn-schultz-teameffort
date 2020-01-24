@@ -55,7 +55,7 @@ public class PayStationImpl implements PayStation {
                 coinMap.put(coinValue, coinMap.getOrDefault(10, 0) + 1);
                 break;
             case 25:
-                coinMap.put(coinValue, coinMap.getOrDefault(10, 0) +1); 
+                coinMap.put(coinValue, coinMap.getOrDefault(25, 0) +1);
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);

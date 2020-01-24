@@ -26,6 +26,7 @@ public class PayStationImplTest {
     @Before
     public void setup() {
         ps = new PayStationImpl();
+        ps.initCoins();
         Mapcoin.initCoins();
     }
 
@@ -202,7 +203,7 @@ public class PayStationImplTest {
         Map temp = inst.cancel();
         assertEquals("nothing in machine, this should be 0", 0,(int)inst.totalInMachine );
     }
-    
+
     @Test
     public void returnMixtureOfCoins() throws IllegalCoinException {
         ps.addPayment(5);
@@ -216,4 +217,23 @@ public class PayStationImplTest {
 
 
     }//
+
+    @Test
+    public void cancelReturnsCorrectCoins()
+        throws IllegalCoinException{
+        /* here we add twenty five cents*/
+        ps.addPayment(5);
+        ps.addPayment(5);
+        ps.addPayment(5);
+        ps.addPayment(10);
+
+        /* the map should return the correct coin denominations not just one 25 cent coin*/
+        Map temp = ps.cancel();
+
+        /* we expect 3 nickels and one dime  and 0 quarters*/
+        assertEquals("should return 3 nickels" , 3,  (int)temp.get(5));
+        assertEquals("should return 1 dime" , 1,  (int)temp.get(10) );
+        assertEquals("should return 0 Quarters" , 0,  (int)temp.get(25) +1 );
+
+    }
 }
