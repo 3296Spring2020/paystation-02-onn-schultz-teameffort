@@ -253,7 +253,7 @@ public class PayStationImplTest {
         /*check that all types of coins in maps are set to zero*/
         assertEquals("count of nickels should be 0", (int)inst.coinMap.get(5),0);
         assertEquals("count of dimes should be 0", (int)inst.coinMap.get(10),0);
-        assertEquals("count of quarters should be 0", (int)inst.coinMap.get(25),0+1);
+        assertEquals("count of quarters should be 0", (int)inst.coinMap.get(25),0);
 
        
 
