@@ -29,8 +29,7 @@ public class PayStationImpl implements PayStation {
 
     private int insertedSoFar;
     private int timeBought;
-
-    public float totalInMachine;   /* total amount of money collected since last emptying */
+    public float totalInMachine = 0;   /* total amount of money collected since last emptying */
     /* total amount of money collected since last emptying */
     public Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
 

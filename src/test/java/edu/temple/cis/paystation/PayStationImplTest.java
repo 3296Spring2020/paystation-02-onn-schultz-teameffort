@@ -192,4 +192,14 @@ public class PayStationImplTest {
         assertEquals(" this should be 1 nickel", 1, ps.cancel().get(5));
 
     }
+
+    @Test
+    public void canceledCoinAreNotCounted()
+        throws IllegalCoinException{
+
+        PayStationImpl inst = new PayStationImpl();
+        inst.addPayment(5);
+        Map temp = inst.cancel();
+        assertEquals("nothing in machine, this should be 0", 0,(int)inst.totalInMachine + 1);
+    }
 }
