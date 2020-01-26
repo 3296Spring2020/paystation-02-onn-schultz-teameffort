@@ -255,20 +255,28 @@ public class PayStationImplTest {
         assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
 
     }
-
+//******************************************************************************
+/*Test method below named buyClearsMap() creates an instance of type PayStationImpl,
+ *The test then "adds"  2 U.S. quarters, 1 U.S. nickel, and 1 U.S. dime
+ *Then "prints" the receipt by calling instance.buy(), which in result will clear the coinMap.
+ *There are 3 assertEquals test to make sure that, the coins inserted are then cleared after call to buy  
+ */ 
+//******************************************************************************    
     @Test
     public void buyClearsMap()
             throws IllegalCoinException {
+        
         PayStationImpl inst = new PayStationImpl();
-        /* here we add twenty five cents*/
-        inst.addPayment(25);
-        inst.addPayment(25);
-        inst.addPayment(5);
-        inst.addPayment(10);
+               
+        inst.addPayment(25); //add 25 cents
+        inst.addPayment(25); //add 25 cents
+        inst.addPayment(5); //add 5 cents
+        inst.addPayment(10); //add 10 cents
 
-        Receipt temp = inst.buy();
+        Receipt temp = inst.buy(); //Create a temp of type Receipt while resetting coinMap to 0 with buy() call
+        
 
- 
+        //Test to check buy() clears map
         assertEquals("count of nickels should be 0", (int) inst.coinMap.get(5), 0);
         assertEquals("count of dimes should be 0", (int) inst.coinMap.get(10), 0);
         assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
