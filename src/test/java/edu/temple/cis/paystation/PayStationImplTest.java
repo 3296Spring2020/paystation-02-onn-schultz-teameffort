@@ -154,7 +154,9 @@ public class PayStationImplTest {
         ps.addPayment(10);
         /* here we use the 10 cents to buy some time*/
         ps.buy();
-        /* money removed from the machine*/
+        /* even though we add more money this should not be reported*/
+        ps.addPayment(10);
+        /* money removed from the machine should be only from what was spent.*/
         int moneyRemoved = ps.empty();
         assertEquals("this should print 10", 10, moneyRemoved);
 
@@ -187,13 +189,15 @@ public class PayStationImplTest {
             throws IllegalCoinException {
 
         ps.addPayment(5);
-
         /* we expect to return a map with 1 nickel in it, so we get the instance of the
         * pay machine and get the count of all coins with value 5 (ie all nickels) */
         assertEquals(" this should be 1 nickel", 1, ps.cancel().get(5));
 
     }
-
+    /**
+     * Testing that coins that are canceled do not add to total amount
+     * in machine.
+     */
     @Test
     public void canceledCoinAreNotCounted()
             throws IllegalCoinException {
@@ -204,6 +208,10 @@ public class PayStationImplTest {
         assertEquals("nothing in machine, this should be 0", 0, (int) inst.totalInMachine);
     }
 
+    /**
+     * Testing that cancel can take in a variety of coin types
+     * and return the correct denominations when called.
+     */
     @Test
     public void returnMixtureOfCoins() throws IllegalCoinException {
         ps.addPayment(5);
@@ -217,6 +225,12 @@ public class PayStationImplTest {
 
     }//
 
+    /**
+     * Testing that cancel can take in a variety of coin types
+     * and return the correct denominations when called. even if they total
+     * an amount equal to another denomination. IE 5 nickels canceled should give you back
+     * 5 nickles not 1 quarter.
+     */
     @Test
     public void cancelReturnsCorrectCoins()
             throws IllegalCoinException {
@@ -236,6 +250,10 @@ public class PayStationImplTest {
 
     }
 
+    /**
+     * Testing that cancel clears the Hash map containing the
+     * record of what coins were received.
+     */
     @Test
     public void cancelClearsMap()
             throws IllegalCoinException {
@@ -255,6 +273,7 @@ public class PayStationImplTest {
         assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
 
     }
+
 //******************************************************************************
 /*Test method below named buyClearsMap() creates an instance of type PayStationImpl,
  *The test then "adds"  2 U.S. quarters, 1 U.S. nickel, and 1 U.S. dime
