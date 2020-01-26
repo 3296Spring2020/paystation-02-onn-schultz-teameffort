@@ -5,6 +5,8 @@ The goal of this lab was two-fold :
 1. practice TDD (test driven development) methodologies.
 2. learn and practice using Git to collaborate with a team member and manage 
 merge conflicts. 
+## Design
+![UML Diagram](https://github.com/3296Spring2020/paystation-02-onn-schultz-teameffort/raw/master/FlowDiagram.png)
 
 ## Requirements
 The required deliverables for this project were of three types:
