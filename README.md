@@ -19,9 +19,14 @@ We had to create and test each @Test method individually, and also all together 
 Once all test cases passed we then had to submit a link to our git repository where the source code and testing methods are saved.
 3. Lastly we had to ensure that each team member contributed “ their fair share” as well as making sure that proper documentation was written. The documentation came in the form of git comments, as well as comments within the code itself.  This README.me also is a required form of documentation for the final submission. 
 
+## Team
+
 ### Abraham Schultz
-// describe contributions here
-testing
+I implemented a test method for the empty method called Should ReportAfterMoneyEmptied.
+This returns the amount of money inserted in to the machine since the last time the empty method was called.
+Next i created a global public variable called totalInMachine. In the buy method i added to this variable every time a purchase was completed.
+I also added the shouldReportEmptyMachine testing method. This makes sure that the machine reports no money inside after empty is called.
+I then added the testing method to test that a call to cancel returns a map containing one coin that was entered. The last two methods i added were for testing that call to cancel clears the hash map of coins, and that call to cancel does not contain a key for a coin not entered.
 
 ### Rathanank Anthony Onn
 
@@ -34,5 +39,5 @@ testing
 - Call to buy clears the map.
 - Wrote documention in source code for clarity of logic.    
 
-## Testing
+
 

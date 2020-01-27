@@ -160,7 +160,7 @@ public class PayStationImplTest {
         int moneyRemoved = ps.empty();
         assertEquals("this should print 10", 10, moneyRemoved);
 
-    }
+    } // end ShouldReportAfterMoneyEmptied
 
     /**
      * This should return empty after money is emptied from machine
@@ -178,7 +178,7 @@ public class PayStationImplTest {
         inst.empty();
         int result = (int) inst.totalInMachine;
         assertEquals("this should print 0", 0, result);
-    }
+    } // end ShouldReportEmptyMachine
 
     /**
      * Testing cancel function returns a hash map with a single coin after a
@@ -193,7 +193,7 @@ public class PayStationImplTest {
         * pay machine and get the count of all coins with value 5 (ie all nickels) */
         assertEquals(" this should be 1 nickel", 1, ps.cancel().get(5));
 
-    }
+    } // end cancelReturnsOneCoin
     /**
      * Testing that coins that are canceled do not add to total amount
      * in machine.
@@ -206,7 +206,7 @@ public class PayStationImplTest {
         inst.addPayment(5);
         Map temp = inst.cancel();
         assertEquals("nothing in machine, this should be 0", 0, (int) inst.totalInMachine);
-    }
+    } // end canceledCoinAreNotCounted
 
     /**
      * Testing that cancel can take in a variety of coin types
@@ -223,7 +223,7 @@ public class PayStationImplTest {
         assertEquals("should return 2 nickels", 2, (int) temp.get(5));
         assertEquals("should return 1 dime", 1, (int) temp.get(10));
 
-    }//
+    }// end returnMixtureOfCoins
 
     /**
      * Testing that cancel can take in a variety of coin types
@@ -272,7 +272,7 @@ public class PayStationImplTest {
         assertEquals("count of dimes should be 0", (int) inst.coinMap.get(10), 0);
         assertEquals("count of quarters should be 0", (int) inst.coinMap.get(25), 0);
 
-    }
+    } // end cancelClearsMap
 
 //******************************************************************************
 /*Test method below named buyClearsMap() creates an instance of type PayStationImpl,
