@@ -24,7 +24,15 @@ Once all test cases passed we then had to submit a link to our git repository wh
 testing
 
 ### Rathanank Anthony Onn
-// describe contributions here
+
+- Provided a basic UML class diagram style chart to help visualize the flow chart of the source code.
+- Implemented a Map to represent coins for the case of: {no coin entered, five cents, ten cents, twenty-five cents,}.
+- Created an initializer function named "init()" to create mapping for coins.
+- Created sucessful test functions for the following cases: 
+    Canceled entry does not add to the amount returned by empty.
+    Call to cancel returns a map containing a mixture of coins entered. 
+    Call to buy clears the map.
+- Wrote documention in source code for clarity of logic.    
 
 ## Testing
 
