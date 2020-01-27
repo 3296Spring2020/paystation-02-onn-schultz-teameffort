@@ -23,10 +23,11 @@ Once all test cases passed we then had to submit a link to our git repository wh
 
 ### Abraham Schultz
 I implemented a test method for the empty method called Should ReportAfterMoneyEmptied.
-This returns the amount of money inserted in to the machine since the last time the empty method was called.
+This returns the amount of money inserted into the machine since the last time the empty method was called.
 Next i created a global public variable called totalInMachine. In the buy method i added to this variable every time a purchase was completed.
 I also added the shouldReportEmptyMachine testing method. This makes sure that the machine reports no money inside after empty is called.
-I then added the testing method to test that a call to cancel returns a map containing one coin that was entered. The last two methods i added were for testing that call to cancel clears the hash map of coins, and that call to cancel does not contain a key for a coin not entered.
+I then added the testing method to test that a call to cancel returns a map containing one coin that was entered. The last two methods I added were for testing that call to cancel clears the hashmap of coins, and that the call to cancel does not contain a key for a coin not entered. Between each test, I made sure to run a Junit test on the method individually, as well as running all the tests at once to ensure that they worked together.
+
 
 ### Rathanank Anthony Onn
 
