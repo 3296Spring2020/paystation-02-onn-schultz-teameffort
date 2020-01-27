@@ -41,7 +41,7 @@ I then added the testing method to test that a call to cancel returns a map cont
 - Wrote documention in source code for clarity of logic.    
 
 ## Build Instructions
-We must note that in order to build this project and run the tests using netbeans, one must use version 8.2 of netbeans or greater. You can also you the most recent version of intellij to run the Junit test.
+We must note that in order to build this project and run the tests using netbeans, one must use version 8.2 of netbeans or greater. You can also use the most recent version of intellij to run the Junit test.
 
 for netbeans:
 - click run, then click on set main project to payStation.
