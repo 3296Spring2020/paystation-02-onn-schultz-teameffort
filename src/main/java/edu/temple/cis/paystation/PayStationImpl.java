@@ -30,10 +30,11 @@ public class PayStationImpl implements PayStation {
     private int insertedSoFar;
     private int timeBought;
     public float totalInMachine = 0;   /* total amount of money collected since last emptying */
-    /* total amount of money collected since last emptying */
-    public Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); // Map<i,j> , where i = coin type and j = number of types
-
     
+    // Map<i,j> , where i = coin type and j = number of types
+    public Map<Integer, Integer> coinMap = new HashMap<Integer, Integer>(); 
+
+    //initCoins sets all the values of the keys and 0(to avoid null) back to 0 when called
     @Override
     public void initCoins() {
     
@@ -41,8 +42,8 @@ public class PayStationImpl implements PayStation {
         coinMap.put(5, 0); //init 5cents = 0 amount in machine ..
         coinMap.put(10, 0); //init key 10cent, zero in machine so far
         coinMap.put(25, 0); //init key to 25cent, zero in machine so far
-        //every coinmap.put method here will/may be moved to an appropiate spot
-    }//end init
+   
+    }//end initCoins()
 
     @Override
     public void addPayment(int coinValue)
@@ -59,9 +60,8 @@ public class PayStationImpl implements PayStation {
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
-        }
+        }//end switch statement
         
-
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
     }
@@ -86,7 +86,7 @@ public class PayStationImpl implements PayStation {
     }
 
 //****************************************************************************** 
-    /**
+    /*
      * Cancel the present transaction. Resets the paystation for a new
      * transaction.
      *
@@ -97,22 +97,21 @@ public class PayStationImpl implements PayStation {
      * two dimes and a nickle, you should get back two dimes and a nickle, not a
      * quarter.) The Map will be cleared after a cancel or buy.
      */
-//Map<Integer, Integer> cancel();
-//Parameters: K - the type of keys maintained by this map, V - the type of mapped values
     @Override
     public Map cancel() {
 
         reset();
-        Map<Integer, Integer> new_map
-                = new HashMap<Integer, Integer>();
+        
+        Map<Integer, Integer> new_map = new HashMap<Integer, Integer>();
 
-        // using iterator
+        // using iterator to copy values before calling initCoins() to clear Map
         for (Map.Entry<Integer, Integer> entry : coinMap.entrySet()) {
             new_map.put(entry.getKey(),
                     entry.getValue());
-        }
+        }//end for loop
 
-        initCoins();
+        initCoins(); //clear map in call to cancel
+        
         return new_map;
  
 

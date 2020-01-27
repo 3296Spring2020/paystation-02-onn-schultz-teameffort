@@ -58,6 +58,7 @@ public interface PayStation {
     */
     public int empty();
     
+    //NEW added method init coins, this method, when called resets the Map's(<key,values>) values to 0
     public void initCoins();
 }
 
