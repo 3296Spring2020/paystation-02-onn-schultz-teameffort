@@ -40,5 +40,14 @@ I then added the testing method to test that a call to cancel returns a map cont
 - Call to buy clears the map.
 - Wrote documention in source code for clarity of logic.    
 
+## Build Instructions
+We must note that in order to build this project and run the tests using netbeans, one must use at least version 8.2 of netbeans or greater. You can also you the most recent version of intellij to run the Junit test.
 
+for netbeans:
+- click run, then click on set main project to payStation.
+- then click run and select test project.
+
+for intellij :
+- either press shit ctrl f10 to run the single test method you are currently in.
+- or press shit alt f10 then select test all
 
