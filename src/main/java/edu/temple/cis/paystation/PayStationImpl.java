@@ -74,15 +74,19 @@ public class PayStationImpl implements PayStation {
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
+        
         /*each min cost 2.5 cents so we can find the total money spent by 
         multiplyng time bought by 2.5*/
         float moneyIn = timeBought * 2.5f;
+        
         /* add total money recieved each time we buy*/
         totalInMachine += moneyIn;
-        reset();
         
-        initCoins();
-        return r;
+        reset(); //reset properties to 0
+        
+        initCoins(); //method call to clear map back to 0
+        
+        return r; //return receipt var
     }
 
 //****************************************************************************** 
@@ -100,9 +104,9 @@ public class PayStationImpl implements PayStation {
     @Override
     public Map cancel() {
 
-        reset();
+        reset(); //reset properties to 0
         
-        Map<Integer, Integer> new_map = new HashMap<Integer, Integer>();
+        Map<Integer, Integer> new_map = new HashMap<Integer, Integer>(); //create new map to get copied values
 
         // using iterator to copy values before calling initCoins() to clear Map
         for (Map.Entry<Integer, Integer> entry : coinMap.entrySet()) {
@@ -118,7 +122,7 @@ public class PayStationImpl implements PayStation {
     }//end cancel()
 
     private void reset() {
-        timeBought = insertedSoFar = 0;
+        timeBought = insertedSoFar = 0; //resets  properties to 0
     }
 
     /*returns the total amount of money collected by the paystation since 

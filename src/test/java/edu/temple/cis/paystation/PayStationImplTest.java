@@ -248,7 +248,7 @@ public class PayStationImplTest {
         assertEquals("should return 1 dime", 1, (int) temp.get(10));
         assertEquals("should return 0 Quarters", 0, (int) temp.get(25));
 
-    }
+    }//end cancelReturnsCorrectCoins()
 
     /**
      * Testing that cancel clears the Hash map containing the
